@@ -1,23 +1,27 @@
 ## Title
-> HandsMeDowns
+> **HandsMeDowns**
 
 ## Team Members
 >Husnain Rafique, Brian Granados,  Anthony Lai
 
 ## Description 
-> The Local Book Trade Center is a platform designed to facilitate the exchange of books 
+> The **HandsMeDown** App is a platform designed to facilitate the exchange of books 
 within a local community,particularly targeting students. Instead of using money, users can 
 trade books with one another. This approach aims to increase access to a variety of books, 
 especially for students at the end of their semesters when they no longer need their textbooks. 
 The goal and motivation behind this project are to support the local community by making books 
 more accessible and promoting sustainable practices through book trading.
+> In addition to trading, users can also choose to donate books or sell them. If a book is sold,
+ a certain percentage of the sale amount will be contributed to local community help initiatives.
 
 ## App Functions
 1. Customer (Student/Bookstore/libraries):
-    1. Create/modify customer profile - Users can create and update their profiles, including personal information and their book collection.
-    2. View available services - Users can browse the available books for trade within their local community.
-    3. Subscribe to available services - Users can subscribe to notifications about new book listings or updates from other users.
-    4. Write reviews for subscribed services - Users can write reviews and rate their book trading experiences with other users.
+    1. **Create/modify customer profile** - Users can create and update their profiles, including personal information and their book collection.
+    2. **View available services** - Users can browse the available books for trade within their local community.
+    3. **Subscribe to available services** - Users can subscribe to notifications about new book listings or updates from other users.
+    4. **Write reviews for subscribed services** - Users can write reviews and rate their book trading experiences with other users.
+    5. **Donate books:** Customers can choose to donate books to the community.
+    6. **Sell books:** Customers can sell books, with a percentage of the sale amount going towards community help.
 2. Provider (tutor):
     1. Create/modify/remove provider profile - Providers, such as local libraries or bookstores, can create and update their profiles and their book inventory.
     2. Create services - Providers can list the books they have available for trade and manage their inventory.
