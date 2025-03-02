@@ -1,0 +1,148 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f5f6fa;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Header Styling */
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0056D2;
+}
+/* Header Styling */
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0056D2;
+}
+.header p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Section Styling */
+section {
+  margin: 40px auto;
+  width: 90%;
+  max-width: 1000px;
+}
+
+/* How It Works */
+.how-it-works h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.step {
+  background-color: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.step i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.step:nth-child(1) i { color: #007bff; } /* Blue for List */
+.step:nth-child(2) i { color: #28a745; } /* Green for Trade */
+.step:nth-child(3) i { color: #dc3545; } /* Red for Sell */
+
+.step h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Featured Listings */
+.featured-listings h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.books {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.book {
+  background-color: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.book p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Buttons */
+button {
+  background-color: #0056D2;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #004bb5;
+}
+
+/* Join Movement Section */
+.join-movement {
+  margin-top: 50px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.join-movement h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.join-movement p {
+  font-size: 1rem;
+  margin-top: 10px;
+  color: #555;
+}
