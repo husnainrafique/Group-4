@@ -37,3 +37,43 @@ ul {
   .active {
     background-color: #04AA6D;
   }
+
+  /*Trade Section*/
+  .trade h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .trade {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .trade {
+    margin-top: 50px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .trade h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .trade-btn {
+    background-color: #71757b;
+    color: white;
+    padding: 5px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .trade-btn:hover {
+    background-color: #70767e;
+  }
+
