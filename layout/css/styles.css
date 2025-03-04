@@ -30,6 +30,20 @@ body {
   margin-top: 5px;
 }
 
+/* Styling for Administrator in Home Page */
+.admin-link {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1rem;
+  color: #0056D2;
+  text-decoration: none;
+}
+
+.admin-link:hover {
+  text-decoration: underline;
+}
+
 /* Section Styling */
 section {
   margin: 40px auto;
