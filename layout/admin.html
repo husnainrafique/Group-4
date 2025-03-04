@@ -20,82 +20,29 @@
     <section class="admin-panel">
         <h2>⚙️ Admin Controls</h2>
 
-       
+        
         <div class="admin-section">
-            <h3>📚 Manage Books</h3>
+            <h3>📚 Manage Book Listings</h3>
+            <button class="add-book-btn"onclick="window.location.href='manageBooks.html';">Add & Remove Books</button>
 
-            <form action="add_book.php" method="POST" class="admin-form">
-                <label for="book-title">Book Title:</label>
-                <input type="text" id="book-title" name="book_title" required>
-
-                <label for="book-author">Author:</label>
-                <input type="text" id="book-author" name="book_author" required>
-
-                <label for="book-status">Status:</label>
-                <select id="book-status" name="book_status">
-                    <option value="trade">Trade</option>
-                    <option value="donate">Donate</option>
-                    <option value="sell">Sell</option>
-                </select>
-
-                <button type="submit" class="add-book-btn">Add New Book</button>
-            </form>
-
-            <form action="remove_book.php" method="POST" class="admin-form">
-                <label for="remove-book">Book ID:</label>
-                <input type="text" id="remove-book" name="book_id" required>
-
-                <button type="submit" class="remove-book-btn">Remove Book</button>
-            </form>
         </div>
 
        
         <div class="admin-section">
             <h3>👤 Manage Users</h3>
-
-            <form action="add_user.php" method="POST" class="admin-form">
-                <label for="user-name">Username:</label>
-                <input type="text" id="user-name" name="username" required>
-
-                <label for="user-email">Email:</label>
-                <input type="email" id="user-email" name="email" required>
-
-                <button type="submit" class="add-user-btn">Add New User</button>
-            </form>
-
-            <form action="ban_user.php" method="POST" class="admin-form">
-                <label for="ban-username">Username:</label>
-                <input type="text" id="ban-username" name="username" required>
-
-                <button type="submit" class="ban-user-btn">Ban User</button>
-            </form>
+            <button class="add-user-btn" onclick="window.location.href='manageUsers.html';">Manage Users & Permissions</button>
+        
         </div>
 
-        
+       
         <div class="admin-section">
             <h3>📊 Reviews & Analytics</h3>
-
-            <form action="reviews.php" method="GET" class="admin-form">
-                <label for="review-type">Reviews Type:</label>
-                <select id="review-type" name="review-type">
-                    <option value="books">Book Listings</option>
-                    <option value="users">User Activity</option>
-                    <option value="transactions">Transactions</option>
-                </select>
-
-                <button type="submit" class="view-reviews-btn">View Reviews</button>
-            </form>
+            <button class="view-reports-btn" onclick="window.location.href='manageReviews.html';">View & Manage Reviews</button>
+            <button class="analytics-btn" onclick="window.location.href='Analytics.html';">Site Analytics</button>
         </div>
     </section>
 
-    <section class="system-logs">
-        <h2>📋 System Logs</h2>
-        <div class="log-container">
-            <p><strong>[2025-03-03]</strong> User "john_doe" added a new book: "Machine Learning Basics"</p>
-            <p><strong>[2025-03-02]</strong> Admin "admin01" removed book "Old Calculus Edition"</p>
-            <p><strong>[2025-03-01]</strong> User "jane_doe" signed up.</p>
-        </div>
-    </section>
+
 
 </body>
 

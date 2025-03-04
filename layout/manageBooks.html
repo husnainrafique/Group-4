@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="HandMeDowns Admin" content="Admin panel for managing books and users." />
+    <title>HandMeDowns - Admin Panel</title>
+    <link rel="stylesheet" href="css/pure.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="header">
+        <h1>📊 Admin Dashboard - HandMeDowns</h1>
+        <p><a href="home.html" class="home-btn">Home</a> | <a href="admin.html" class="home-btn">Return</a> | Logout</p>
+    </header>
+
+    <section class="admin-panel">
+        <h2>⚙️ Admin Controls</h2>
+
+       
+        <div class="admin-section">
+            <h3>📚 Manage Books</h3>
+
+            <form action="placeholder" method="placeholder" class="admin-form">
+                <label for="book-title">Book Title:</label>
+                <input type="text" id="book-title" name="book_title" required>
+
+                <label for="book-author">Author:</label>
+                <input type="text" id="book-author" name="book_author" required>
+
+                <label for="book-status">Status:</label>
+                <select id="book-status" name="book_status">
+                    <option value="trade">Trade</option>
+                    <option value="donate">Donate</option>
+                    <option value="sell">Sell</option>
+                </select>
+
+                <button type="submit" class="add-book-btn">Add New Book</button>
+            </form>
+
+            <form action="placeholder" method="placeholder" class="admin-form">
+                <label for="remove-book">Book ID:</label>
+                <input type="text" id="remove-book" name="book_id" required>
+
+                <button type="submit" class="remove-book-btn">Remove Book</button>
+            </form>
+        </div>
+
+       
+  
+
+</body>
+
+</html>
