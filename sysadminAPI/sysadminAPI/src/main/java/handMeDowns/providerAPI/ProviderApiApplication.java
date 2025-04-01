@@ -1,4 +1,4 @@
-package providerAPI;
+package handMeDowns.providerAPI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

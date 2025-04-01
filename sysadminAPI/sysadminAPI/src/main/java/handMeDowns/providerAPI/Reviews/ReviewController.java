@@ -1,4 +1,4 @@
-package providerAPI.Reviews;
+package handMeDowns.providerAPI.Reviews;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import providerAPI.Books.Book;
-import providerAPI.Books.BookService;
 
 @RestController
 @RequestMapping("/reviews")

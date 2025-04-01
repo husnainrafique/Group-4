@@ -1,4 +1,4 @@
-package providerAPI.Provider;
+package handMeDowns.providerAPI.Provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

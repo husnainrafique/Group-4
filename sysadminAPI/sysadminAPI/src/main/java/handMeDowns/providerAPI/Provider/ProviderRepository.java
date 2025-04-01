@@ -1,4 +1,4 @@
-package providerAPI.Provider;
+package handMeDowns.providerAPI.Provider;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
