@@ -4,20 +4,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import handMeDowns.sysadminAPI.sysAdmin.Admin;
 import handMeDowns.sysadminAPI.sysAdmin.AdminRepository;
-@RestController
+@Controller
 @RequestMapping("/statlogs")
 public class StatLogsController {
 
@@ -50,7 +49,7 @@ public class StatLogsController {
         return statLogsRepository.findAll();
     }
 
-    /* POST a log in time. Make sure an admin exists first
+    /* POST a log in time. 
     http://localhost:8080/statlogs/login 
     {
     "sysAdminId": 1, # whatever the id of the admin is 
@@ -58,43 +57,28 @@ public class StatLogsController {
     }
     */
     @PostMapping("/login")
-    public ResponseEntity<?> logLogin(@RequestBody LoginRequest request) {
-        try {
-            Admin sysAdmin = sysAdminRepository.findById(request.getSysAdminId())
-                    .orElseThrow(() -> new IllegalArgumentException("SysAdmin not found"));
-            
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date loggedInTime = sdf.parse(request.getLoggedInTimestamp());
-            
-            StatLogs log = statLogsService.logLogin(sysAdmin, loggedInTime);
-            return ResponseEntity.ok(log);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(
-                Map.of("error", e.getMessage(),
-                    "timestamp", new Date())
-            );
-        }
-}
-
-  
-
-    @PostMapping("/logout")
-    public ResponseEntity<?> logLogout(@RequestBody LogoutRequest request) {
-        try {
-            StatLogs statLogs = statLogsRepository.findById(request.getStatLogId())
-                    .orElseThrow(() -> new IllegalArgumentException("StatLog not found"));
-            
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date loggedOutTime = sdf.parse(request.getLoggedOutTimestamp());
-            
-            return ResponseEntity.ok(statLogsService.logLogout(statLogs, loggedOutTime));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(
-                Map.of("error", e.getMessage(),
-                    "timestamp", new Date())
-            );
-        }
+    public ResponseEntity<StatLogs> logLogin(@RequestBody LoginRequest request) throws ParseException {
+        Admin sysAdmin = sysAdminRepository.findById(request.getSysAdminId())
+                .orElseThrow(() -> new IllegalArgumentException("SysAdmin not found"));
+    
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date loggedInTime = sdf.parse(request.getLoggedInTimestamp());
+    
+        StatLogs log = statLogsService.logLogin(sysAdmin, loggedInTime);
+        return ResponseEntity.ok(log);
     }
+    
+    @PostMapping("/logout")
+    public ResponseEntity<StatLogs> logLogout(@RequestBody LogoutRequest request) throws ParseException {
+        StatLogs statLogs = statLogsRepository.findById(request.getStatLogId())
+                .orElseThrow(() -> new IllegalArgumentException("StatLog not found"));
+    
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date loggedOutTime = sdf.parse(request.getLoggedOutTimestamp());
+    
+        return ResponseEntity.ok(statLogsService.logLogout(statLogs, loggedOutTime));
+    }
+    
 
     @PostMapping("/delete")
     public StatLogs logAdminDeletion(@RequestParam int sysAdminId, @RequestParam String deleteTimestamp, @RequestParam int deletedSysAdminId) throws ParseException {

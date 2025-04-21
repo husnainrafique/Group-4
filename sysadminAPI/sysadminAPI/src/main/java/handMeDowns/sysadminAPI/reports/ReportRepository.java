@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Integer> {
 
-    // Custom Queries
     @Query("SELECT r FROM Report r WHERE r.status = ?1")
     List<Report> findByStatus(String status);
 
@@ -21,7 +20,7 @@ public interface ReportRepository extends JpaRepository<Report, Integer> {
     List<Report> findReportsCreatedAfter(Date date);
 
     @Query("SELECT r FROM Report r WHERE r.contentDetails LIKE %?1%")
-    List<Report> findByContentDetails(String content_details);
+    List<Report> findByContentDetails(String content);
 
     @Query("SELECT r FROM Report r WHERE r.status = ?1 AND r.author LIKE %?2%")
     List<Report> findByStatusAndAuthor(String status, String author);

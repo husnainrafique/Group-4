@@ -9,12 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReportService {
-    @Autowired
-    private final ReportRepository reportRepository;
 
-    public ReportService(ReportRepository reportRepository) {
-        this.reportRepository = reportRepository;
-    }
+    @Autowired
+    private ReportRepository reportRepository;
 
     public List<Report> getAllReports() {
         return reportRepository.findAll();
@@ -25,10 +22,8 @@ public class ReportService {
     }
 
     public Report createReport(Report report) {
-       
         report.setCreatedAt(new Date());
         report.setUpdatedAt(new Date());
-        
         
         if (report.getSysAdmin() == null || report.getSysAdmin().getAdminID() == 0) {
             throw new IllegalArgumentException("Admin ID is required");
@@ -64,8 +59,8 @@ public class ReportService {
         return reportRepository.findReportsCreatedAfter(date);
     }
 
-    public List<Report> getReportsByContent(String contentDetails) {
-        return reportRepository.findByContentDetails(contentDetails);
+    public List<Report> getReportsByContent(String content) {
+        return reportRepository.findByContentDetails(content);
     }
 
     public List<Report> getReportsByStatusAndAuthor(String status, String author) {

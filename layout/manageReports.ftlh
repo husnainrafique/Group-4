@@ -22,30 +22,33 @@
 
        
         <div class="admin-section">
-            <h3>📚 Manage Books</h3>
+            <h3>📚 Manage Reviews</h3>
 
             <form action="placeholder" method="placeholder" class="admin-form">
-                <label for="book-title">Book Title:</label>
+                <label for="report-details">Report details:</label>
                 <input type="text" id="book-title" name="book_title" required>
 
-                <label for="book-author">Author:</label>
+                <label for="report-author">Author:</label>
                 <input type="text" id="book-author" name="book_author" required>
 
-                <label for="book-status">Status:</label>
-                <select id="book-status" name="book_status">
-                    <option value="trade">Trade</option>
-                    <option value="donate">Donate</option>
-                    <option value="sell">Sell</option>
+                <label for="report-reason">Reason:</label>
+                <input type="text" id="book-author" name="book_author" required>
+
+
+                <label for="report-status">Status:</label>
+                <select id="report-status" name="book_status">
+                    <option value="trade">OPEN</option>
+                    <option value="donate">CLOSED</option>
                 </select>
 
                 <button type="submit" class="add-book-btn">Add New Book</button>
             </form>
 
             <form action="placeholder" method="placeholder" class="admin-form">
-                <label for="remove-book">Book ID:</label>
+                <label for="remove-report">ReportID:</label>
                 <input type="text" id="remove-book" name="book_id" required>
 
-                <button type="submit" class="remove-book-btn">Remove Book</button>
+                <button type="submit" class="remove-review-btn">Remove review</button>
             </form>
         </div>
 

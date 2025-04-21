@@ -1,4 +1,5 @@
 package handMeDowns.sysadminAPI.reports;
+
 import java.util.Date;
 import java.util.List;
 
@@ -26,12 +27,10 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reportID;
 
-    // Many reports can be associated with one SysAdmin (Admin).
     @ManyToOne
     @JoinColumn(name = "sysadmin_id", nullable = false)
     private Admin sysAdmin;
 
-    // One report can have many stat logs.
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StatLogs> statLogs;
 
@@ -55,9 +54,22 @@ public class Report {
     @Column(nullable = false, length = 255)
     private String reason;
 
+    public Report() {
+    }
+
+    public Report(Admin sysAdmin, String contentDetails, String author, String status, String reason) {
+        this.sysAdmin = sysAdmin;
+        this.contentDetails = contentDetails;
+        this.author = author;
+        this.status = status;
+        this.reason = reason;
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
+    }
+
     // Getters and Setters
     public int getReportID() {
-        return this.reportID;
+        return reportID;
     }
 
     public void setReportID(int reportID) {
@@ -89,7 +101,7 @@ public class Report {
     }
 
     public String getAuthor() {
-        return this.author;
+        return author;
     }
 
     public void setAuthor(String author) {
@@ -97,7 +109,7 @@ public class Report {
     }
 
     public Date getCreatedAt() {
-        return this.createdAt;
+        return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
@@ -105,7 +117,7 @@ public class Report {
     }
 
     public Date getUpdatedAt() {
-        return this.updatedAt;
+        return updatedAt;
     }
 
     public void setUpdatedAt(Date updatedAt) {
@@ -113,7 +125,7 @@ public class Report {
     }
 
     public String getStatus() {
-        return this.status;
+        return status;
     }
 
     public void setStatus(String status) {
@@ -121,7 +133,7 @@ public class Report {
     }
 
     public String getReason() {
-        return this.reason;
+        return reason;
     }
 
     public void setReason(String reason) {

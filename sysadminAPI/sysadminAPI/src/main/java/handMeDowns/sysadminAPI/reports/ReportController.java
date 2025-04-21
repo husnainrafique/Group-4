@@ -1,88 +1,77 @@
 package handMeDowns.sysadminAPI.reports;
 
-
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/reports")
 public class ReportController {
 
-    private final ReportService reportService;
+    @Autowired
+    private ReportService reportService;
 
-    public ReportController(ReportService reportService) {
-        this.reportService = reportService;
-    }
-
-    @GetMapping
-    public List<Report> getAllReports() {
-        return reportService.getAllReports();
+    @GetMapping("/all")
+    public Object getAllReports(Model model) {
+        model.addAttribute("reportList", reportService.getAllReports());
+        model.addAttribute("title", "All Reports");
+        return "report-list";
     }
 
     @GetMapping("/{id}")
-    public Optional<Report> getReportById(@PathVariable int id) {
-        return reportService.getReportById(id);
-    }
-    /* POST a report. Make sure an admin exists first.
-        http://localhost:8080/reports
-        {
-        "sysAdmin": {
-            "adminID": 1 
-        },
-        "contentDetails": "Test report content",
-        "author": "testuser",
-        "status": "OPEN",
-        "reason": "Testing report creation"
-    }
-    */
-    @PostMapping
-    public Report createReport(@RequestBody Report report) {
-        return reportService.createReport(report);
+    public Object getReportById(@PathVariable int id, Model model) {
+        model.addAttribute("report", reportService.getReportById(id).orElse(null));
+        model.addAttribute("title", "Report #" + id);
+        return "report-details";
     }
 
-    @PutMapping("/{id}")
-    public Report updateReport(@PathVariable int id, @RequestBody Report reportDetails) {
-        return reportService.updateReport(id, reportDetails);
+    @GetMapping("/createForm")
+    public Object showCreateForm(Model model) {
+        model.addAttribute("report", new Report());
+        model.addAttribute("title", "Create New Report");
+        return "report-create";
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteReport(@PathVariable int id) {
+    @PostMapping("/new")
+    public Object createReport(Report report) {
+        reportService.createReport(report);
+        return "redirect:/reports/all";
+    }
+
+    @GetMapping("/update/{id}")
+    public Object showUpdateForm(@PathVariable int id, Model model) {
+        model.addAttribute("report", reportService.getReportById(id).orElse(null));
+        model.addAttribute("title", "Update Report");
+        return "report-update";
+    }
+
+    @PostMapping("/update/{id}")
+    public Object updateReport(@PathVariable int id, Report reportDetails) {
+        reportService.updateReport(id, reportDetails);
+        return "redirect:/reports/" + id;
+    }
+
+    @GetMapping("/delete/{id}")
+    public Object deleteReport(@PathVariable int id) {
         reportService.deleteReport(id);
+        return "redirect:/reports/all";
     }
 
     @GetMapping("/byStatus/{status}")
-    public List<Report> getReportsByStatus(@PathVariable String status) {
-        return reportService.getReportsByStatus(status);
+    public Object getReportsByStatus(@PathVariable String status, Model model) {
+        model.addAttribute("reportList", reportService.getReportsByStatus(status));
+        model.addAttribute("title", "Reports with Status: " + status);
+        return "report-list";
     }
 
     @GetMapping("/byAuthor/{author}")
-    public List<Report> getReportsByAuthor(@PathVariable String author) {
-        return reportService.getReportsByAuthor(author);
-    }
-
-    @GetMapping("/byCreated/{date}")
-    public List<Report> getReportsCreatedAfter(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-        return reportService.getReportsCreatedAfter(date);
-    }
-
-    @GetMapping("/byContent/{content}")
-    public List<Report> getReportsByContent(@PathVariable String content) {
-        return reportService.getReportsByContent(content);
-    }
-
-    @GetMapping("/byStatusAndAuthor/{status}/{author}")
-    public List<Report> getReportsByStatusAndAuthor(@PathVariable String status, @PathVariable String author) {
-        return reportService.getReportsByStatusAndAuthor(status, author);
+    public Object getReportsByAuthor(@PathVariable String author, Model model) {
+        model.addAttribute("reportList", reportService.getReportsByAuthor(author));
+        model.addAttribute("title", "Reports by Author: " + author);
+        return "report-list";
     }
 }
