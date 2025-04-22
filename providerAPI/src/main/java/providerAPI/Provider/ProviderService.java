@@ -1,8 +1,10 @@
-package handMeDowns.providerAPI.Provider;
-import java.util.List;
+package providerAPI.Provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class ProviderService {
@@ -20,6 +22,15 @@ public class ProviderService {
 
     public void addNewProvider(Provider provider) {
         providerRepository.save(provider);
+    }
+
+    public void updateNewProvider(int storeID, Provider provider) {
+        Provider existing = getProviderById(storeID);
+        existing.setStore_name(provider.getStore_name());
+        existing.setInventory(provider.getInventory());
+        existing.setReviews(provider.getReviews());
+        existing.setUpdatedAt(new Date());
+        providerRepository.save(existing);
     }
 
     public void deleteProviderById(int storeId) {
