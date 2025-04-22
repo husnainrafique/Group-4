@@ -23,7 +23,17 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public void deleteBookById(int bookID) {
+    public void updateBook(int bookID, Book book) {
+        Book existing = getBookById(bookID);
+        existing.setBook_name(book.getBook_name());
+        existing.setISBN(book.getISBN());
+        existing.setPrice(book.getPrice());
+        existing.setPublisher(book.getPublisher());
+        existing.setSummary(book.getSummary());
+    bookRepository.save(existing);
+    }
+
+    public void deleteBook(int bookID) {
         bookRepository.deleteById(bookID);
     }
 

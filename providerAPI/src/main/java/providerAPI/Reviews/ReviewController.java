@@ -14,7 +14,7 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Review> getAllReviews() {
         return reviewService.getAllReviews();
     }
@@ -32,13 +32,13 @@ public class ReviewController {
 
     @PutMapping("/update/{reviewID}")
     public Object updateReview(@PathVariable int reviewID, @RequestBody Review review) {
-        reviewService.addNewReview(review);
+        reviewService.updateReview(reviewID, review);
         return new ResponseEntity<>(reviewService.getReviewById(reviewID), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{reviewID}")
-    public Object deleteReview(int reviewID) {
-        reviewService.deleteReviewById(reviewID);
+    public Object deleteReview(@PathVariable int reviewID) {
+        reviewService.deleteReview(reviewID);
         return new ResponseEntity<>(reviewService.getAllReviews(), HttpStatus.OK);
     }
 

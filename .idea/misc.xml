@@ -4,9 +4,8 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/OneDrive/Desktop/github/04-01-final/demo/pom.xml" />
-        <option value="$PROJECT_DIR$/sysadminAPI/sysadminAPI/pom.xml" />
         <option value="$PROJECT_DIR$/providerAPI/pom.xml" />
+        <option value="$PROJECT_DIR$/sysadminAPI/sysadminAPI/pom.xml" />
       </list>
     </option>
   </component>

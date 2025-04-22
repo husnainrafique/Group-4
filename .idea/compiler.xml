@@ -8,14 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="sysadminAPI" />
         <module name="demo" />
-        <module name="demo (1) (4)" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="demo" options="-parameters" />
-      <module name="demo (1) (4)" options="-parameters" />
       <module name="sysadminAPI" options="-parameters" />
     </option>
   </component>

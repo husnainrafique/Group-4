@@ -56,10 +56,6 @@ public class Review {
         return reviewID;
     }
 
-    public void setReviewID(int reviewID){
-        this.reviewID = reviewID;
-    }
-
     public String getRating(){
         return rating;
     }
