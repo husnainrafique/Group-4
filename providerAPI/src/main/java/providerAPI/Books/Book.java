@@ -1,15 +1,18 @@
 package providerAPI.Books;
 
 import jakarta.persistence.*;
+import providerAPI.Provider.Provider;
 
 @Entity
 @Table(name = "books")
 public class Book {
-
-    //multiple books for a single owner
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookID;
+
+    @ManyToOne
+    @JoinColumn(name = "storeID", nullable = true)
+    private Provider provider;
 
     @Column(nullable = false, length = 30)
     private String ISBN;
@@ -40,12 +43,54 @@ public class Book {
         this.ISBN = ISBN;
     }
 
+//    public Book(Provider provider,int bookID, String book_name, String ISBN){
+//        this.provider = provider;
+//        this.bookID = bookID;
+//        this.book_name = book_name;
+//        this.ISBN = ISBN;
+//    }
+//
+//    public Book(Provider provider,int bookID, String book_name, String ISBN, double price){
+//        this.provider = provider;
+//        this.bookID = bookID;
+//        this.book_name = book_name;
+//        this.ISBN = ISBN;
+//        this.price = price;
+//    }
+//
+//    public Book(Provider provider,int bookID, String book_name, String ISBN, double price, String publisher){
+//        this.provider = provider;
+//        this.bookID = bookID;
+//        this.book_name = book_name;
+//        this.ISBN = ISBN;
+//        this.price = price;
+//        this.publisher = publisher;
+//    }
+//
+    public Book(Provider provider,int bookID, String book_name, String ISBN, double price, String publisher, String summary){
+        this.provider = provider;
+        this.bookID = bookID;
+        this.book_name = book_name;
+        this.ISBN = ISBN;
+        this.price = price;
+        this.publisher = publisher;
+        this.summary = summary;
+    }
+
     public int getBookID(){
         return bookID;
     }
 
     public void setBookID(int bookID){
         this.bookID = bookID;
+    }
+
+    public Provider getProvider(){
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 
     public void setBook_name(String book_name){

@@ -1,6 +1,7 @@
 package providerAPI.Reviews;
 
 import jakarta.persistence.*;
+import providerAPI.Provider.Provider;
 
 import java.util.Date;
 
@@ -10,8 +11,11 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int reviewID;
+
+    @ManyToOne
+    @JoinColumn(name = "storeID")
+    private Provider provider;
 
     @Column(nullable = false, length = 255)
     private String rating;

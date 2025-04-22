@@ -14,7 +14,7 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Review> getAllReviews() {
         return reviewService.getAllReviews();
     }
