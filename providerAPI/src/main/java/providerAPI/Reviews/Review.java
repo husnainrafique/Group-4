@@ -1,14 +1,8 @@
-package handMeDowns.providerAPI.Reviews;
-import java.util.Date;
+package providerAPI.Reviews;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "reviews")
@@ -16,6 +10,7 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int reviewID;
 
     @Column(nullable = false, length = 255)
@@ -53,8 +48,8 @@ public class Review {
         this.authorID = authorID;
         this.content = content;
         this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     public int getReviewID(){

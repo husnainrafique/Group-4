@@ -1,22 +1,12 @@
-package handMeDowns.providerAPI.Provider;
+package providerAPI.Provider;
 
-import java.util.ArrayList;
+import providerAPI.Books.Book;
+import providerAPI.Reviews.Review;
+//import sysadminAPI.statLogs.StatLogs;
+import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import handMeDowns.providerAPI.Books.Book;
-import handMeDowns.providerAPI.Reviews.Review;
-import handMeDowns.sysadminAPI.statLogs.StatLogs;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 
 @Entity
@@ -32,14 +22,17 @@ public class Provider {
     private String store_name;
 
     // multiple books for one inventory
-    @JsonManagedReference
-    private List<Book> inventory = new ArrayList<>();
+    //@JsonManagedReference
+    @OneToMany
+    private List<Book> inventory;
 
-    @JsonManagedReference
-    private List<Review> reviews = new ArrayList<>();
+    //@JsonManagedReference
+    @OneToMany
+    private List<Review> reviews;
 
-    @JsonManagedReference
-    private List<StatLogs> statistics = new ArrayList<>();
+    //@JsonManagedReference
+    //@OneToMany
+    //private List<StatLogs> statistics;
 
 
     public List<Book> getInventory() {
@@ -50,12 +43,15 @@ public class Provider {
         this.inventory = inventory;
     }
 
-    public Provider() {}
+    public Provider() {
+    }
 
-    public Provider(String store_name, Date createdAt, Date updatedAt) {
+    public Provider(String store_name, List<Book> inventory, List<Review> reviews, Date createdAt, Date updatedAt) {
         this.store_name = store_name;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.inventory = inventory;
+        this.reviews = reviews;
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     // Getters and Setters
@@ -71,7 +67,7 @@ public class Provider {
         return store_name;
     }
 
-    public void setStore_name(String store_name){
+    public void setStore_name(String store_name) {
         this.store_name = store_name;
     }
 
@@ -100,13 +96,17 @@ public class Provider {
         this.updatedAt = updatedAt;
     }
 
+    /*
     public List<StatLogs> getStatistics() {
+
         return statistics;
     }
 
     public void setStatistics(List<StatLogs> statistics) {
         this.statistics = statistics;
     }
+    */
+
 
     public List<Review> getReviews() {
         return reviews;

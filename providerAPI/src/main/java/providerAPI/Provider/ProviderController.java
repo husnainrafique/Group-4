@@ -1,5 +1,7 @@
-package handMeDowns.providerAPI.Provider;
+package providerAPI.Provider;
 
+import providerAPI.Provider.Provider;
+import providerAPI.Provider.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ public class ProviderController {
         return new ResponseEntity<>(providerService.getAllProviders(), HttpStatus.OK);
     }
 
-    @GetMapping("/{storeId}")
+    @GetMapping("/{storeID}")
     public Object getStoreById(@PathVariable int storeID) {
         return new ResponseEntity<>(providerService.getProviderById(storeID), HttpStatus.OK);
     }
@@ -30,27 +32,19 @@ public class ProviderController {
     }
 
 
-    @PostMapping("/update/{providerId}")
-    public Object updateProvider(@PathVariable int storeId, @RequestBody Provider provider) {
-        providerService.addNewProvider(provider);
-        return new ResponseEntity<>(providerService.getProviderById(storeId), HttpStatus.CREATED);
+    @PutMapping("/update/{storeID}")
+    public Object updateProvider(@PathVariable int storeID, @RequestBody Provider provider) {
+        providerService.updateNewProvider(storeID, provider);
+        return new ResponseEntity<>(providerService.getProviderById(storeID), HttpStatus.CREATED);
     }
 
-    /* check on this later
-    @DeleteMapping("/delete/{storeId}")
-    public Object deleteProviderById(@PathVariable int providerId) {
-        //Or use CASCADE to handle this.
-        for (Project project : projectService.getProjectsByTeam(providerId))
-            projectService.deleteProjectById(project.getProjectId());
-        for (Student student : studentService.getStudentsByTeam(providerId)) {
-            student.setTeam(null);
-            studentService.updateStudent(student);
-        }
-        providerService.deleteProviderById(providerId);
+    //check on this later
+    @DeleteMapping("/delete/{storeID}")
+    public Object deleteProviderById(@PathVariable int storeID){
+        providerService.deleteProviderById(storeID);
         return new ResponseEntity<>(providerService.getAllProviders(), HttpStatus.OK);
     }
 
-     */
 
 }
 

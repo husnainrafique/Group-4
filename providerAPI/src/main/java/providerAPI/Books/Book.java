@@ -1,13 +1,6 @@
-package handMeDowns.providerAPI.Books;
+package providerAPI.Books;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "books")
@@ -16,7 +9,6 @@ public class Book {
     //multiple books for a single owner
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
     private int bookID;
 
     @Column(nullable = false, length = 30)
