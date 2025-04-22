@@ -1,5 +1,6 @@
 package providerAPI.Provider;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import providerAPI.Books.Book;
 import providerAPI.Reviews.Review;
 //import sysadminAPI.statLogs.StatLogs;
@@ -21,9 +22,9 @@ public class Provider {
     @Column(nullable = false, length = 50)
     private String store_name;
 
-    // multiple books for one inventory
+    // multiple books for one provider
     //@JsonManagedReference
-    @OneToMany
+    @OneToMany(mappedBy = "provider", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Book> inventory;
 
     //@JsonManagedReference
@@ -49,6 +50,13 @@ public class Provider {
     public Provider(String store_name, List<Book> inventory, List<Review> reviews, Date createdAt, Date updatedAt) {
         this.store_name = store_name;
         this.inventory = inventory;
+        this.reviews = reviews;
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
+    }
+
+    public Provider(String store_name, List<Review> reviews, Date createdAt, Date updatedAt) {
+        this.store_name = store_name;
         this.reviews = reviews;
         this.createdAt = new Date();
         this.updatedAt = new Date();
