@@ -41,7 +41,6 @@ public class StatLogsService {
         StatLogs statLogs = new StatLogs();
         statLogs.setSysAdmin(sysAdmin);
         statLogs.setAdminDeleteTimestamp(deleteTimestamp);
-        // Set other fields as needed
         return statLogsRepository.save(statLogs);
     }
 }

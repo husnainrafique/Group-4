@@ -1,4 +1,5 @@
 package handMeDowns.sysadminAPI.sysAdmin;
+
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -53,7 +54,8 @@ public class Admin {
     @Column(nullable = false)
     private Date updatedAt;
 
-    public Admin() {}
+    public Admin() {
+    }
 
     public Admin(String role, Date createdAt, Date updatedAt) {
         this.role = role;
@@ -61,7 +63,6 @@ public class Admin {
         this.updatedAt = updatedAt;
     }
 
-    // Getters and Setters
     public int getAdminID() {
         return adminID;
     }

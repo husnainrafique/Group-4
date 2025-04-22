@@ -1,77 +1,59 @@
 package handMeDowns.sysadminAPI.reports;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Optional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/reports")
+@RequestMapping("/reports/manageReports")
 public class ReportController {
 
-    @Autowired
-    private ReportService reportService;
+    private final ReportService reportService;
 
-    @GetMapping("/all")
-    public Object getAllReports(Model model) {
+    public ReportController(ReportService reportService) {
+        this.reportService = reportService;
+    }
+
+    @GetMapping
+    public String manageReports(Model model) {
         model.addAttribute("reportList", reportService.getAllReports());
-        model.addAttribute("title", "All Reports");
-        return "report-list";
+        model.addAttribute("newReport", new Report());
+        model.addAttribute("totalReports", reportService.getTotalReports());
+        return "manage-reports";
     }
 
-    @GetMapping("/{id}")
-    public Object getReportById(@PathVariable int id, Model model) {
-        model.addAttribute("report", reportService.getReportById(id).orElse(null));
-        model.addAttribute("title", "Report #" + id);
-        return "report-details";
-    }
-
-    @GetMapping("/createForm")
-    public Object showCreateForm(Model model) {
-        model.addAttribute("report", new Report());
-        model.addAttribute("title", "Create New Report");
-        return "report-create";
-    }
-
-    @PostMapping("/new")
-    public Object createReport(Report report) {
+    @PostMapping("/create")
+    public String createReport(@ModelAttribute Report report) {
         reportService.createReport(report);
-        return "redirect:/reports/all";
+        return "redirect:/reports/manageReports";
     }
 
-    @GetMapping("/update/{id}")
-    public Object showUpdateForm(@PathVariable int id, Model model) {
-        model.addAttribute("report", reportService.getReportById(id).orElse(null));
-        model.addAttribute("title", "Update Report");
-        return "report-update";
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable int id, Model model) {
+        Optional<Report> report = reportService.getReportById(id);
+        if (report.isPresent()) {
+            model.addAttribute("report", report.get());
+            return "edit-report";
+        }
+        return "redirect:/reports/manageReports";
     }
 
     @PostMapping("/update/{id}")
-    public Object updateReport(@PathVariable int id, Report reportDetails) {
-        reportService.updateReport(id, reportDetails);
-        return "redirect:/reports/" + id;
+    public String updateReport(@PathVariable int id, @ModelAttribute Report report) {
+        reportService.updateReport(id, report);
+        return "redirect:/reports/manageReports";
     }
 
     @GetMapping("/delete/{id}")
-    public Object deleteReport(@PathVariable int id) {
+    public String deleteReport(@PathVariable int id) {
         reportService.deleteReport(id);
-        return "redirect:/reports/all";
+        return "redirect:/reports/manageReports";
     }
 
-    @GetMapping("/byStatus/{status}")
-    public Object getReportsByStatus(@PathVariable String status, Model model) {
-        model.addAttribute("reportList", reportService.getReportsByStatus(status));
-        model.addAttribute("title", "Reports with Status: " + status);
-        return "report-list";
-    }
-
-    @GetMapping("/byAuthor/{author}")
-    public Object getReportsByAuthor(@PathVariable String author, Model model) {
-        model.addAttribute("reportList", reportService.getReportsByAuthor(author));
-        model.addAttribute("title", "Reports by Author: " + author);
-        return "report-list";
-    }
 }

@@ -1,4 +1,5 @@
 package handMeDowns.sysadminAPI.statLogs;
+
 import java.util.Date;
 
 import handMeDowns.sysadminAPI.reports.Report;
@@ -23,26 +24,26 @@ public class StatLogs {
     private int id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date loggedInTimestamp;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = true)
     private Date loggedOutTimestamp;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private long totalTimeLoggedIn; // In milliseconds
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date adminDeleteTimestamp; // When an admin deletes another admin
+    private Date adminDeleteTimestamp; 
 
     @ManyToOne
     @JoinColumn(name = "sysadmin_id", nullable = false)
-    private Admin sysAdmin; // The sysadmin who logged in/out or deleted another sysadmin
+    private Admin sysAdmin; 
 
     @ManyToOne
     @JoinColumn(name = "report_id")
-    private Report report; // Link to a report if the log is related to a specific report
+    private Report report; 
 
     // Getters and setters
     public int getId() {
@@ -70,7 +71,7 @@ public class StatLogs {
     }
 
     public long getTotalTimeLoggedIn() {
-        return totalTimeLoggedIn=0;
+        return totalTimeLoggedIn = 0;
     }
 
     public void setTotalTimeLoggedIn(long totalTimeLoggedIn) {
