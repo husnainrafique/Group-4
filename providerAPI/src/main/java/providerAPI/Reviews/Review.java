@@ -1,5 +1,6 @@
 package providerAPI.Reviews;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import providerAPI.Provider.Provider;
 
@@ -14,7 +15,8 @@ public class Review {
     private int reviewID;
 
     @ManyToOne
-    @JoinColumn(name = "storeID")
+    @JoinColumn(name = "providers_id", nullable = true)
+    @JsonBackReference
     private Provider provider;
 
     @Column(nullable = false, length = 255)
@@ -47,7 +49,8 @@ public class Review {
         this.reviewID = reviewID;
     }
 
-    public Review(String rating, int authorID, String content, String status, Date createdAt, Date updatedAt) {
+    public Review(Provider provider, String rating, int authorID, String content, String status, Date createdAt, Date updatedAt) {
+        this.provider = provider;
         this.rating = rating;
         this.authorID = authorID;
         this.content = content;
@@ -66,6 +69,14 @@ public class Review {
 
     public void setRating(String rating){
         this.rating = rating;
+    }
+
+    public Provider getProvider(){
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 
     public String getContent(){
@@ -106,5 +117,19 @@ public class Review {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewID=" + reviewID +
+                ", provider=" + provider +
+                ", rating='" + rating + '\'' +
+                ", content='" + content + '\'' +
+                ", authorID=" + authorID +
+                ", status='" + status + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

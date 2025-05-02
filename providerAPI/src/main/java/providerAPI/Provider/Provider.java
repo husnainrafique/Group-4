@@ -23,12 +23,14 @@ public class Provider {
     private String store_name;
 
     // multiple books for one provider
-    //@JsonManagedReference
-    @OneToMany(mappedBy = "provider", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "provider")
+    @Column
     private List<Book> inventory;
 
-    //@JsonManagedReference
-    @OneToMany
+    @JsonManagedReference
+    @OneToMany(mappedBy = "provider")
+    @Column
     private List<Review> reviews;
 
     //@JsonManagedReference
@@ -45,6 +47,10 @@ public class Provider {
     }
 
     public Provider() {
+    }
+
+    public Provider(int storeID) {
+        this.storeID = storeID;
     }
 
     public Provider(String store_name, List<Book> inventory, List<Review> reviews, Date createdAt, Date updatedAt) {

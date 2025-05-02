@@ -38,8 +38,8 @@ public class BookController {
     }
 
     @DeleteMapping("/delete/{bookID}")
-    public Object deleteBookById(@PathVariable int bookID) {
-        bookService.deleteBook(bookID);
+    public Object deleteBook(@PathVariable int bookID) {
+        bookService.deleteBookById(bookID);
         return new ResponseEntity<>(bookService.getAllBooks(), HttpStatus.OK);
     }
 

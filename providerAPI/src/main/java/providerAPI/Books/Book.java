@@ -1,5 +1,6 @@
 package providerAPI.Books;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import providerAPI.Provider.Provider;
 
@@ -11,7 +12,8 @@ public class Book {
     private int bookID;
 
     @ManyToOne
-    @JoinColumn(name = "storeID", nullable = true)
+    @JoinColumn(name = "providers_id", nullable = true)
+    @JsonBackReference
     private Provider provider;
 
     @Column(nullable = false, length = 30)
@@ -133,5 +135,16 @@ public class Book {
         return publisher;
     }
 
-
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookID=" + bookID +
+                ", provider=" + provider +
+                ", ISBN='" + ISBN + '\'' +
+                ", book_name='" + book_name + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", summary='" + summary + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

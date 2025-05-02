@@ -19,6 +19,11 @@ public class BookService {
         return bookRepository.findById(bookID).orElse(null);
     }
 
+    public void addNewBook(Book book) {
+        System.out.println(book.toString());
+        bookRepository.save(book);
+    }
+
     public void updateBook(int bookID, Book book) {
         Book existing = getBookById(bookID);
         existing.setBook_name(book.getBook_name());

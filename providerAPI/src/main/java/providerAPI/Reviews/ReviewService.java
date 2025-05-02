@@ -31,6 +31,7 @@ public class ReviewService {
         existing.setRating(review.getRating());
         existing.setStatus(review.getStatus());
         existing.setUpdatedAt(new Date());
+        existing.setProvider(review.getProvider());
 
         reviewRepository.save(existing);
     }
