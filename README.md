@@ -41,6 +41,7 @@ handMeDownsAPI
 - [User Repository](handMeDownsAPI/handMeDownsAPI/src/main/java/handMeDownsAPI/example/handMeDownsAPI/userRepository)
 - [User Review](handMeDownsAPI/handMeDownsAPI/src/main/java/handMeDownsAPI/example/handMeDownsAPI/userReview)
 - [User Service](handMeDownsAPI/handMeDownsAPI/src/main/java/handMeDownsAPI/example/handMeDownsAPI/userService)
+
 💅 Frontend & Configuration
 - [CSS Stylesheet](handMeDownsAPI/handMeDownsAPI/src/main/resources/static/css/styles.css)
 - [FTLH Templates](handMeDownsAPI/handMeDownsAPI/src/main/resources/templates)
